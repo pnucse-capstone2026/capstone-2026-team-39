@@ -17,9 +17,21 @@ SOURCES=(
   "한국은행|processed/runs/20260724-final-bok-cascade-resume-v1/cascade/chunks.jsonl"
 )
 # Large corpora were parsed as parallel runs split by config/multi-institution-parse/*.jsonl.
+# KRX/KSD/KIOST: prefer the cascade runs once all three parts exist; otherwise use
+# the faster baseline runs. Never mix the two, or documents would be indexed twice.
+krx_cascade_ready=1
 for part in 1 2 3; do
-  SOURCES+=("한국거래소·한국예탁결제원·한국해양과학기술원 p$part|processed/runs/20260929-krx-ksd-kiost-cascade-p$part/cascade/chunks.jsonl")
+  [[ -f "processed/runs/20260929-krx-ksd-kiost-cascade-p$part/cascade/chunks.jsonl" ]] || krx_cascade_ready=0
 done
+if [[ $krx_cascade_ready -eq 1 ]]; then
+  for part in 1 2 3; do
+    SOURCES+=("한국거래소·한국예탁결제원·한국해양과학기술원 cascade p$part|processed/runs/20260929-krx-ksd-kiost-cascade-p$part/cascade/chunks.jsonl")
+  done
+else
+  for part in 1 2 3 4 5 6; do
+    SOURCES+=("한국거래소·한국예탁결제원·한국해양과학기술원 baseline p$part|processed/runs/20260929-krx-ksd-kiost-baseline-p$part/baseline/chunks.jsonl")
+  done
+fi
 for part in 1 2 3 4 5 6; do
   SOURCES+=("금융감독원 p$part|processed/runs/20260929-fss-baseline-p$part/baseline/chunks.jsonl")
 done

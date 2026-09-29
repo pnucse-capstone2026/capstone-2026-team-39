@@ -210,12 +210,17 @@ cp .env.example .env
 scripts/build_multi_institution_index.sh   # → processed/index/multi-institution.sqlite
 ```
 
-| 기관 | 파서 프로필 | 비고 |
-|---|---|---|
-| 부산대학교 | Cascade | 선별 문서 2,247건. 최종보고서 평가에 사용한 것과 같은 청크 |
-| 한국은행, 한국인터넷진흥원(KISA) | Cascade | |
-| 한국거래소, 한국예탁결제원, 한국해양과학기술원 | Cascade | |
-| 금융감독원 | Baseline | 원본이 2.6GB로 커서 무거운 구조 파서·OCR 없이 처리. 스캔 문서와 복잡한 표의 추출 품질이 낮을 수 있음 |
+| 기관 | 파서 프로필 | 청크 수 | 비고 |
+|---|---|---:|---|
+| 부산대학교 | Cascade | 44,520 | 선별 문서 2,247건. 최종보고서 평가에 사용한 것과 같은 청크 |
+| 한국은행 | Cascade | 47,715 | |
+| 한국인터넷진흥원(KISA) | Cascade | 2,803 | |
+| 금융감독원 | Baseline | 174,199 | 원본 2.6GB |
+| 한국거래소 | Baseline | 39,391 | |
+| 한국해양과학기술원 | Baseline | 5,592 | |
+| 한국예탁결제원 | Baseline | 209 | 원본 14건 |
+
+Baseline 기관은 스캔 PDF의 구조 분석·OCR(Docling, PaddleOCR)을 거치지 않았습니다. 이 파서들은 문서 하나에 몇 시간씩 걸려서 마감 안에 끝낼 수 없었기 때문입니다. 따라서 스캔 문서와 복잡한 표의 추출 품질이 낮을 수 있고, 일부 PDF는 띄어쓰기가 빠진 채 추출되었습니다. Cascade 파싱이 끝나면 `scripts/build_multi_institution_index.sh`가 한국거래소·한국예탁결제원·한국해양과학기술원을 자동으로 Cascade 결과로 바꿔 넣습니다.
 
 **4) API 서버 실행** (터미널 1, 포트 8000)
 
