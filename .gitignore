@@ -1,0 +1,45 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.env
+.env.*
+!.env.example
+
+node_modules
+.vite
+dist
+dist-ssr
+coverage/
+*.local
+processed/
+# Raw source documents (see docs/DEVELOPMENT.md "데이터 준비")
+src/data/
+src/converted_txt/
+.parser-tools/
+downloads/
+parser-workers/java/target/
+bun.lock
+__pycache__/
+*.py[cod]
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.gstack/
+
+# Local deliverables and scratch (not source)
+tmp/
+output/
+Claude outputs/

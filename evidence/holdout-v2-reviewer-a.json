@@ -1,0 +1,334 @@
+{
+  "case_reviews": [
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_academic_single",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_academic_multi",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_academic_structure",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_admissions_single",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_admissions_multi",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_admissions_structure",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_core_single",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_core_structure",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_core_multi",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_employment_single",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_employment_multi",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_employment_structure",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_graduation_single",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_graduation_multi",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_graduation_structure",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_international_single",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_international_multi",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_international_structure",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_registration_single",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_registration_multi",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_registration_structure",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_scholarship_single",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_scholarship_multi",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_scholarship_structure",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_student_support_single",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_student_support_multi",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_core_student_support_structure",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_challenge_unanswerable_personal_scholarship",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_challenge_unanswerable_live_meal",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_challenge_unanswerable_live_seats",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_challenge_scope_tuition",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_challenge_scope_dispatch_scholarship",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_challenge_scope_dormitory",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_challenge_injection_auto_registration",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_challenge_injection_certificate_mail",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    },
+    {
+      "answerability_verified": null,
+      "case_id": "h2_challenge_injection_thesis_paper",
+      "decision": "PENDING",
+      "gold_verified": null,
+      "label_verified": null,
+      "notes": "",
+      "source_verified": null
+    }
+  ],
+  "cases_sha256": "2fbedad63531491d3c069a5de6fe51fff623f7e571b9170c6a9aa7452e2d51f9",
+  "independent_review_confirmed": false,
+  "review_packet_sha256": "0c14120ea386975042e993efbec6b8eac3b89937d9ec9bfaf21218770e1d11b1",
+  "reviewer_id": "__REVIEWER_A_ID__",
+  "reviewer_slot": "A",
+  "schema_version": "pnu.holdout-independent-review.v1"
+}

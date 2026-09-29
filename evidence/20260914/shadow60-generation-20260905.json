@@ -1,0 +1,77 @@
+{
+  "runs": [
+    {
+      "run": 1,
+      "records": 60,
+      "sha256": "9202f4fd9e0bf3ad8447d4f3f72ef2ddeffff0672fb8e26dc10d48970772d8c6",
+      "models": [
+        "gemini-3.5-flash-lite"
+      ],
+      "fallbacks": 0,
+      "request_attempts": 60,
+      "mean_latency_ms": 1817.6505166666666,
+      "p95_latency_ms": 2324.678,
+      "collector_config_sha256": "3d35cab6f803cf5e6e070b855ab494db71c59b8a1321eae3ff02ca16dff1eae5"
+    },
+    {
+      "run": 2,
+      "records": 60,
+      "sha256": "d85a141c53e3f3b33003ed78f46f009aab11a67af408916cca39ecae53e7f599",
+      "models": [
+        "gemini-3.5-flash-lite"
+      ],
+      "fallbacks": 0,
+      "request_attempts": 60,
+      "mean_latency_ms": 1946.7265,
+      "p95_latency_ms": 2504.782,
+      "collector_config_sha256": "1cd122184fb0b82708c39a48235ba173af6caf6597da7e7c47471c03af1a6224"
+    },
+    {
+      "run": 3,
+      "records": 60,
+      "sha256": "dcbc047e4b1a10005bcb2866b5b7db3c758f64148bcc02dd9fa2ad94954ccaf2",
+      "models": [
+        "gemini-3.5-flash-lite"
+      ],
+      "fallbacks": 0,
+      "request_attempts": 60,
+      "mean_latency_ms": 1734.7812833333332,
+      "p95_latency_ms": 2186.461,
+      "collector_config_sha256": "0ee38ab4358376711e9ae940eca8af2723bae7de632a66e865c717f0aee2aeea"
+    }
+  ],
+  "changed_generation_inputs": [],
+  "identical_final_answers_across_runs": 12,
+  "schema_version": "pnu.shadow-generation-collection-audit.v1",
+  "cases": {
+    "path": "config/pnu-service-shadow60-v1.jsonl",
+    "sha256": "0906e6c8de40040915e668e6cf61639306657e6f94f41e5bcdf62197a6d90754"
+  },
+  "directory": "processed/eval/preflight-20260905/shadow60-generation-v1",
+  "code_sha256": "9a8865db361d6d3a044d26fc57698f56840540ed573a5f37bb50ef684c1cf4a5",
+  "index_sha256": "a4c1ca6318cb14721866a6512f3dfeacdca58c62ecff98ea7b81df2e75c74c31",
+  "transport": {
+    "generation_deadline_seconds": 45,
+    "provider_timeout_seconds": 30,
+    "collector_timeout_seconds": 180,
+    "sleep_seconds": 3
+  },
+  "today_calls": {
+    "diagnostic_generation_calls": 1,
+    "accepted_generation_calls": 180,
+    "generation_retries": 0
+  },
+  "validation": {
+    "answer_record_integrity": "PASS",
+    "judge_validate_only": [
+      60,
+      60,
+      60
+    ],
+    "tests": 797,
+    "skipped": 6,
+    "failed": 0,
+    "lint": "PASS",
+    "build": "PASS"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "base_commit": "c3e581bc708f2811ce73dec4a278657a72f7fff1",
+  "status": "offline_fix_verified_not_merged",
+  "fixed_copy": "/private/tmp/pnu-security-fix-20260908.GRuL54/repo",
+  "changed_files": {
+    "scripts/rag/context_fields.py": {
+      "before": null,
+      "after": "ea8ca7fd2ec92669557cc4d7c9f745cba5ef5382408d09e7be0b9032c92c73b0"
+    },
+    "scripts/rag/generators.py": {
+      "before": "27067bf9fc3cce87a60adf82418913f10a2236f808bb72b2b25383c96b91c5b6",
+      "after": "22c4f867daf7aea07f2926f9d881e9f819f81c94877a4561912b9c7c96717aec"
+    },
+    "scripts/rag/security/context_gate.py": {
+      "before": "6cc48131ba8b7a71a8547461d731e0165d38c635245678393554f9c8db915ca3",
+      "after": "278e1662925ac9196ac585c17f62d5bd6bd0820ea361ad1be80e5e3119bfe7d8"
+    },
+    "scripts/rag/security/output_gate.py": {
+      "before": "72fe2d9a03b395e933dd943b6197a0b25a25dce6fe108ece50ccfbcca3a9f531",
+      "after": "529ab0fefd12c651d74d325b3227176dff0485cd76fb551ee8dd702b6b3e5d92"
+    },
+    "tests/test_security_regressions.py": {
+      "before": null,
+      "after": "eda20cf78bb08d4be25b75a69a85e3030027725c91ba65fb6b032e0a3ffdd3e1"
+    }
+  },
+  "declarations_unchanged": [
+    "context_gate._RULES",
+    "generators.SYSTEM_INSTRUCTION"
+  ],
+  "service_files_unchanged": [
+    "scripts/search_api.py",
+    "scripts/bm25_search.py",
+    "scripts/judge_service_answers.py"
+  ],
+  "external_llm_calls": 0,
+  "official_scores_changed": false,
+  "input_sha256": {
+    "processed/eval/preflight-20260905/shadow60-generation-v1/c1-run1.answers.jsonl": "9202f4fd9e0bf3ad8447d4f3f72ef2ddeffff0672fb8e26dc10d48970772d8c6",
+    "processed/eval/preflight-20260905/shadow60-generation-v1/c1-run2.answers.jsonl": "d85a141c53e3f3b33003ed78f46f009aab11a67af408916cca39ecae53e7f599",
+    "processed/eval/preflight-20260905/shadow60-generation-v1/c1-run3.answers.jsonl": "dcbc047e4b1a10005bcb2866b5b7db3c758f64148bcc02dd9fa2ad94954ccaf2"
+  },
+  "local_test_fixture_sha256": {
+    "processed/index/pnu-20260725-curated-cascade-v5-allow-suspect.sqlite": "a4c1ca6318cb14721866a6512f3dfeacdca58c62ecff98ea7b81df2e75c74c31",
+    "processed/curation/20260725-pnu-curated-v5/curated-manifest.jsonl": "1fa7e0f2f5d03a2a1249584d91f7232c9b2cb4642b39115bf3c9e6a871845a2f"
+  },
+  "artifacts": {
+    "processed/eval/preflight-20260908/security-layer-fixes-v1/baseline-components.json": "3d31ce8f96ff34d416c22858c6eed27ecea3c0d276994eaa9b7f9a5627f595c6",
+    "processed/eval/preflight-20260908/security-layer-fixes-v1/baseline-full-ready.json": "9efc3ac1ebee59d9d3a4ffb663aa8172730bdb8182fc67121004db6712875752",
+    "processed/eval/preflight-20260908/security-layer-fixes-v1/baseline-full-ready.log": "6ab18e0c5e1269fc1887b5c1aa3b422f83898869b3be7a4047f37ebbfbaea658",
+    "processed/eval/preflight-20260908/security-layer-fixes-v1/baseline-full.json": "febec47f64e2462daa5f6733187105ac5ecefe42ffff55cb17c7651b37031624",
+    "processed/eval/preflight-20260908/security-layer-fixes-v1/baseline-full.log": "dfd176f55abbfe081b0ce7128c5df9f83585ce0aaa2ca90dff73b5fd4e7298d9",
+    "processed/eval/preflight-20260908/security-layer-fixes-v1/fixed-components.json": "f418a2b87e0f705f2f528db7280ec5f0fd542787a08131f9aede5f77868195dd",
+    "processed/eval/preflight-20260908/security-layer-fixes-v1/fixed-full-ready.json": "33ef1c4edd82fc214f8227c15adf41cf26231ea5bcbe7c45d00f33ad953d26eb",
+    "processed/eval/preflight-20260908/security-layer-fixes-v1/fixed-full-ready.log": "b88ab18afc26ed15b2a0604e53b003cfd83250fba54c3c04888b913e28b6cd31",
+    "processed/eval/preflight-20260908/security-layer-fixes-v1/fixed-full.json": "2f16c723162eeb9a5b5003fa971c8edb86e344807d9c6c7416401d208e27247d",
+    "processed/eval/preflight-20260908/security-layer-fixes-v1/fixed-full.log": "90eda418a85cf06be8b720f03065b51fafe989ca4d1307dc17115baecc25c4ed"
+  },
+  "bundle_outputs": {
+    "changes.patch": "a84da3a9646b63e36e6e20da9a70d5c5c67abf26f4b48db850088f5d84dcabcb",
+    "run_offline_tests.py": "441e858ca6b323ead9ea46512a81ffc9f1f6c5bc766e11cb9e27fc271de75cda",
+    "compare_components.py": "bb27db151f8585913c9066213ec59774dc1c71d1a1b13ca888f6d024474fe75f",
+    "offline.sb": "3356b822935bcaf4a118f7cf94cd2a937a2e6f014050e1543086a0bf2573908e",
+    "package_fix.py": "6b642559bc1264a62c3780ec1075d9ca96240217da01b7c26e070fa97461a5a3"
+  }
+}

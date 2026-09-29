@@ -1,0 +1,45 @@
+{
+  "schema_version": "pnu.shadow-diagnostic-preparation-audit.v1",
+  "date": "2026-09-07",
+  "status": "packet_ready_human_review_pending",
+  "manifest_path": "processed/eval/preflight-20260907/shadow14-human-review-v1/manifest.json",
+  "manifest_sha256": "1ab5b65a66c74f12e38f41c85f5215b2258f7e323cf2ac9d0a2345e4a95157bd",
+  "packet_sha256": "e469fb1ccc8457c57e5626a7839470d6eed465ecc97140f6210ab9cdac178212",
+  "selection": {
+    "evidence_complete_majority_failures": 11,
+    "success_controls": 3,
+    "questions": 14,
+    "primary_generation_run_id": "run1",
+    "primary_answer_reviews": 14,
+    "optional_answer_reviews": 28,
+    "human_reviews_completed": 0,
+    "all_template_rows_pending": 42,
+    "representative_sample": false,
+    "formal_calibration": false,
+    "holdout_signoff": false
+  },
+  "verification": {
+    "unit_tests": {"total": 27, "skipped": 0, "failures": 0, "errors": 0},
+    "javascript_contract_corrupt_input_cases_rejected": 12,
+    "full_service_unittest_rerun": false,
+    "answer_judge_bindings_verified": 42,
+    "full_contexts_verified": 336,
+    "input_sha256_verified": 7,
+    "output_sha256_verified": 6,
+    "existing_output_rejected_exit_code": 2,
+    "lint": "PASS",
+    "build": "PASS",
+    "git_diff_check": "PASS",
+    "browser_visual_and_end_to_end": "NOT_VERIFIED: browser tool blocked file URL; no workaround attempted"
+  },
+  "frozen_code_sha256": {
+    "scripts/search_api.py": "9a8865db361d6d3a044d26fc57698f56840540ed573a5f37bb50ef684c1cf4a5",
+    "scripts/bm25_search.py": "6c474dc83a4f27ab3172de5b839f731e9954206b1d3cb1748dc08f3848cb1ad7",
+    "scripts/rag/generators.py": "67cccfd602b808929c226fcbb659635495e50e05103592664020c6c3a725166b",
+    "scripts/judge_service_answers.py": "95b653d336058bc8eb8829c64472a3ad94162bc3a08d87400f0391e7b06e7414"
+  },
+  "external_llm_calls": 0,
+  "holdout_accessed": false,
+  "existing_artifacts_changed": false,
+  "git_mutations": false
+}

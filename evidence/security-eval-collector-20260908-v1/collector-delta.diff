@@ -1,0 +1,283 @@
+--- frozen/evaluate_service_answers.py
++++ separate/evaluate_security_service_answers.py
+@@ -1,5 +1,9 @@
+ #!/usr/bin/env python3
+-"""부산대 서비스 평가셋의 답변을 실제 서비스 경로에서 수집한다.
++"""보안 비교 전용 수집 사본. 동결된 evaluate_service_answers.py는 변경하지 않는다.
++
++DEV/Shadow 진단 전용이며 final holdout schedule에 사용할 수 없다.
++--expected-security-mode enforce(기본) 또는 absent(보안 적용 전)를 명시한다.
++정상 보안 차단은 생성 호출 없는 답변으로 저장하되 GFC/공격 성공 판정은 하지 않는다.
+ 
+ 연구비 벤치마크와 달리 검색·생성을 직접 조립하지 않고, 실행 중인
+ search_api의 POST /chat을 호출한다. 역할 매핑·프롬프트 조립·공급자
+@@ -11,20 +15,22 @@
+ 별도 실행한다. 따라서 재채점이나 재개가 원본 답변·실패 기록을 수정하지 않는다.
+ 
+ append + stable answer_id 재개 방식. 사용 예:
+-  python3 scripts/evaluate_service_answers.py \
++  python3 scripts/evaluate_security_service_answers.py \
+       --api-base http://127.0.0.1:8000 \
+-      --experiment-id final-20260909 --condition-id c1 --generation-run-id run1 \
++      --experiment-id security-diagnostic-v1 --condition-id c1-sec-fixed --generation-run-id run1 \
++      --expected-security-mode enforce \
+       --provider frontier --model gemini-3.1-flash-lite \
+       --parser-profile cascade --retrieval-mode bm25 \
+       --expected-corpus-revision REVISION \
+       --expected-retrieval-tuning on \
+       --expected-context-chunks-per-document 2 --eval-trace \
+-      --out processed/eval/final-20260909/c1-run1.answers.jsonl
++      --out processed/eval/security-diagnostic-v1/c1-sec-fixed-run1.answers.jsonl
+ """
+ 
+ from __future__ import annotations
+ 
+ import argparse
++import copy
+ import hashlib
+ import http.client
+ import json
+@@ -56,6 +62,7 @@
+ DEFAULT_CASES = REPO_ROOT / "config" / "pnu-service-answer-eval.jsonl"
+ ERROR_SCHEMA_VERSION = "pnu.service-answer-attempt.v1"
+ ATOMIC_EVIDENCE_MATCHER_VERSION = "pnu.atomic-evidence-nfkc-fuzzy-table-v2"
++SECURITY_EVAL_CONTRACT = "pnu.security-eval-collection.v1"
+ 
+ T = TypeVar("T")
+ 
+@@ -78,6 +85,127 @@
+ 
+ class AnswerPayloadError(RuntimeError):
+     """A non-retryable malformed/empty service answer."""
++
++
++def inspect_security_response(response: dict, *, expected_mode: str) -> dict:
++    """Validate server observations, never infer security success from answer text.
++
++    response → pinned mode + gate contract → generated | security_abstention
++                                      └→ inconsistent/missing → control_error
++    Only the exact no-generation/all-contexts-excluded contract gets an exception
++    to the usual used-provider/model check. Every other control stays enforced.
++    """
++    if expected_mode not in {"absent", "enforce"}:
++        raise RuntimeError("unsupported security evaluation mode")
++    if not isinstance(response, dict):
++        raise RuntimeError("security evaluation response must be an object")
++    trace = response.get("evaluation_trace")
++    results = response.get("results")
++    if (
++        not isinstance(results, list) or not isinstance(trace, dict)
++        or trace.get("schema_version") != 1
++        or not isinstance(trace.get("retrieval_stages"), dict)
++        or not isinstance(trace["retrieval_stages"].get("final_contexts"), list)
++        or len(trace["retrieval_stages"]["final_contexts"]) != len(results)
++    ):
++        raise RuntimeError("security evaluation requires consistent final-context trace")
++    observation = {
++        "contract_version": SECURITY_EVAL_CONTRACT,
++        "expected_mode": expected_mode,
++        "outcome": "generated",
++        "generator_called": True,
++    }
++    security = response.get("security")
++    retrieval = response.get("retrieval")
++    if not isinstance(retrieval, dict):
++        raise RuntimeError("security evaluation requires retrieval metadata")
++    if expected_mode == "absent":
++        if security is not None or "security_gate" in retrieval:
++            raise RuntimeError("pre-security condition unexpectedly returned security metadata")
++        return observation
++    if not isinstance(security, dict) or set(security) != {"context_gate", "output_gate"}:
++        raise RuntimeError("security evaluation omitted gate summaries")
++    context, output = security["context_gate"], security["output_gate"]
++    if not isinstance(context, dict) or not isinstance(output, dict):
++        raise RuntimeError("invalid security gate summary types")
++    if context.get("policy_version") != "context-security-v1" or context.get("mode") != "enforce":
++        raise RuntimeError("context security policy/mode mismatch")
++    if output.get("policy_version") != "output-security-v1":
++        raise RuntimeError("output security policy mismatch")
++    if retrieval.get("security_gate") != context:
++        raise RuntimeError("context security summary disagreement")
++    for summary, keys in (
++        (context, ("evaluated", "allowed", "sanitized", "excluded")),
++        (output, ("claims_checked", "claims_supported", "invalid_citations")),
++    ):
++        for key in keys:
++            if type(summary.get(key)) is not int or summary[key] < 0:
++                raise RuntimeError(f"invalid security counter: {key}")
++    if context["evaluated"] != context["allowed"] + context["sanitized"] + context["excluded"]:
++        raise RuntimeError("inconsistent context security counts")
++    reasons = context.get("reasons")
++    if not isinstance(reasons, dict) or any(
++        not isinstance(key, str) or not key or type(value) is not int or value <= 0
++        for key, value in reasons.items()
++    ) or (context["evaluated"] > 0 and not reasons):
++        raise RuntimeError("invalid context security reasons")
++    results = response.get("results")
++    if not isinstance(results, list) or len(results) != context["allowed"] + context["sanitized"]:
++        raise RuntimeError("security counts disagree with returned contexts")
++    if context.get("status") != ("passed" if results else "blocked"):
++        raise RuntimeError("context security status mismatch")
++    decision = output.get("decision")
++    if decision not in {"answer", "partial_answer", "abstain"}:
++        raise RuntimeError("unknown output security decision")
++    if output.get("status") != ("blocked" if decision == "abstain" else "passed"):
++        raise RuntimeError("output security status mismatch")
++    if output["claims_supported"] > output["claims_checked"]:
++        raise RuntimeError("output supported claims exceed checked claims")
++    if decision != "abstain" and output["invalid_citations"]:
++        raise RuntimeError("output security passed invalid citations")
++
++    generation = response.get("generation")
++    if not isinstance(generation, dict):
++        raise RuntimeError("security evaluation omitted generation metadata")
++    if generation.get("used") != "none":
++        if not results:
++            raise RuntimeError("generation reported without any retained context")
++        return observation
++
++    # Fail closed: no_results by itself can be an ordinary search failure.
++    # Keep the actual used=none/model=None values; do not invent an LLM request.
++    if (
++        context["evaluated"] <= 0 or context["excluded"] != context["evaluated"]
++        or results or decision != "abstain"
++        or any(output[key] != 0 for key in ("claims_checked", "claims_supported", "invalid_citations"))
++        or response.get("claims") != [] or response.get("citations") != []
++        or generation.get("model") is not None
++        or generation.get("fallback_reason") != "no_results"
++        or generation.get("attempts") != []
++        or set(generation) != {"requested", "used", "model", "fallback_reason", "attempts"}
++    ):
++        raise RuntimeError("not a verified all-contexts-excluded security abstention")
++    trace = response.get("evaluation_trace")
++    if (
++        not isinstance(trace, dict) or trace.get("schema_version") != 1
++        or any(key not in trace or trace[key] is not None
++               for key in ("generation_input", "raw_draft", "sanitized_draft"))
++        or not isinstance(trace.get("retrieval_stages"), dict)
++        or trace["retrieval_stages"].get("final_contexts") != []
++    ):
++        raise RuntimeError("security abstention trace contradicts no generation")
++    observation.update(outcome="security_abstention", generator_called=False)
++    return observation
++
++
++def validate_saved_security_record(record: dict) -> None:
++    """Validate preserved metadata as well as its enclosing immutable record hash."""
++    config = record.get("collector_config") or {}
++    expected_mode = config.get("expected_security_mode")
++    response = {**record, "results": record.get("sources")}
++    expected = inspect_security_response(response, expected_mode=expected_mode)
++    if record.get("security_evaluation") != expected:
++        raise ValueError("saved security evaluation observation mismatch")
+ 
+ 
+ def load_cases(path: Path) -> list[dict]:
+@@ -699,9 +827,12 @@
+     expected_corpus_revision: str | None,
+     institution: str | None = None,
+     require_eval_trace: bool = False,
+-) -> None:
++    expected_security_mode: str = "enforce",
++) -> dict:
+     """Fail closed when the live server did not run the pinned condition."""
+ 
++    security_observation = inspect_security_response(response, expected_mode=expected_security_mode)
++    security_abstention = security_observation["outcome"] == "security_abstention"
+     actual_profile = str(response.get("parser_profile") or "")
+     if actual_profile != parser_profile:
+         raise RuntimeError(
+@@ -731,12 +862,12 @@
+             "generation provider request mismatch: "
+             f"expected {expected_provider!r}, got {requested!r}"
+         )
+-    if provider != "auto" and used != expected_provider:
++    if not security_abstention and provider != "auto" and used != expected_provider:
+         raise RuntimeError(
+             "generation provider fallback: "
+             f"expected {expected_provider!r}, used {used!r}"
+         )
+-    if model is not None and str(generation.get("model") or "") != model:
++    if not security_abstention and model is not None and str(generation.get("model") or "") != model:
+         raise RuntimeError(
+             "generation model mismatch: "
+             f"expected {model!r}, got {generation.get('model')!r}"
+@@ -782,6 +913,7 @@
+             )
+             if len(request_config_sha) != 64:
+                 raise RuntimeError("generation request config hash is missing")
++    return security_observation
+ 
+ 
+ def build_record_base(
+@@ -959,7 +1091,10 @@
+     *,
+     final_authorization: Any | None = None,
+ ) -> None:
++    if final_authorization is not None:
++        raise ValueError("security evaluation collector is not a final holdout collector")
+     ap = argparse.ArgumentParser(description=__doc__)
++    ap.add_argument("--expected-security-mode", choices=("absent", "enforce"), default="enforce")
+     ap.add_argument("--cases", type=Path, default=DEFAULT_CASES)
+     ap.add_argument("--api-base", default="http://127.0.0.1:8000")
+     ap.add_argument("--out", type=Path, required=True)
+@@ -1052,6 +1187,13 @@
+     )
+     args = ap.parse_args(argv)
+ 
++    if not args.eval_trace:
++        ap.error("security evaluation requires --eval-trace")
++    if args.provider == "auto":
++        ap.error("security evaluation requires an explicit provider")
++    if "holdout" in str(args.cases.resolve()).lower():
++        ap.error("security evaluation cannot read holdout input paths")
++
+     if args.context_k <= 0:
+         ap.error("--context-k must be positive")
+     if args.max_attempts <= 0:
+@@ -1348,6 +1490,9 @@
+         ap.error(f"service preflight failed: {exc}")
+ 
+     collector_config = {
++        "security_eval_contract": SECURITY_EVAL_CONTRACT,
++        "expected_security_mode": args.expected_security_mode,
++        "collector_source_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+         "api_base": args.api_base.rstrip("/"),
+         "cases_path": str(args.cases),
+         "cases_sha256": hashlib.sha256(args.cases.read_bytes()).hexdigest(),
+@@ -1439,7 +1584,8 @@
+                 ap.error("existing output has a different collector config")
+             try:
+                 validate_answer_record(record)
+-            except ValueError as exc:
++                validate_saved_security_record(record)
++            except (ValueError, RuntimeError) as exc:
+                 ap.error(f"invalid existing answer artifact: {exc}")
+             if not str(record.get("answer") or "").strip():
+                 ap.error("existing answer artifact contains an empty answer")
+@@ -1625,7 +1771,7 @@
+                     raise RuntimeError(
+                         "eval trace was requested but the response omitted it"
+                     )
+-                validate_response_controls(
++                security_observation = validate_response_controls(
+                     resp,
+                     provider=args.provider,
+                     model=args.model,
+@@ -1634,6 +1780,7 @@
+                     expected_corpus_revision=args.expected_corpus_revision,
+                     institution=institution,
+                     require_eval_trace=args.eval_trace,
++                    expected_security_mode=args.expected_security_mode,
+                 )
+                 if final_metadata is not None:
+                     if collection_purpose == "final_retrieval":
+@@ -1734,6 +1881,8 @@
+             rec["claims"] = resp.get("claims") or []
+             rec["citations"] = resp.get("citations") or []
+             rec["postprocessing"] = resp.get("postprocessing") or {}
++            rec["security"] = copy.deepcopy(resp.get("security"))
++            rec["security_evaluation"] = security_observation
+             rec["generator"] = resp.get("generator")
+             rec["generation"] = resp.get("generation")
+             rec["role_mapping"] = resp.get("role")

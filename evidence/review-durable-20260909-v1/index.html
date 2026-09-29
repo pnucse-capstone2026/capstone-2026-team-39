@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PNU 검토 노트 · 파일 자동 저장</title>
+<style>
+:root{--ink:#20344b;--muted:#4d6275;--accent:#255ca8;--paper:#edf2f7;--line:#bac8d7;--white:#fff;--danger:#952828;--success:#14633f}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}header,main,footer{max-width:1680px;margin:auto;padding:20px 28px}header{padding-bottom:0}h1{font-size:28px;margin:0 0 6px;letter-spacing:-.02em}h2{font-size:22px;line-height:1.5;margin:8px 0}h3{font-size:17px;margin:0 0 12px}p{margin:6px 0 12px;max-width:75ch}small,.muted{color:var(--muted)}small{display:block;font-size:13px}.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.push{margin-left:auto}button,input,textarea,select{font:inherit;color:var(--ink);border:1px solid var(--line);border-radius:6px;background:white;padding:9px 12px;min-height:44px}button{cursor:pointer}button:hover:not(:disabled){border-color:var(--accent);background:#e8f0fb}button.primary{background:var(--accent);border-color:var(--accent);color:white}button.primary:hover:not(:disabled){background:#1c487f}button:disabled{opacity:.55;cursor:not-allowed}:focus-visible{outline:3px solid var(--accent);outline-offset:3px}input{max-width:220px}textarea{width:100%;min-height:130px;resize:vertical;line-height:1.8}::placeholder{color:var(--muted)}.toolbar{padding:14px 0;border-top:1px solid var(--line);margin-top:18px}.status{padding:12px 16px;border:1px solid var(--line);background:white;border-radius:6px;overflow-wrap:anywhere}.status[data-state=success]{color:var(--success)}.status[data-state=error]{color:var(--danger);background:#fff3f2;border-color:#bd6c6c}.status[data-state=pending]{color:#765009;background:#fff9e8}.receipt{font-size:12px;color:var(--muted);overflow-wrap:anywhere;margin:6px 0}.nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:0 0 12px}.nav select{flex:1;min-width:200px}.run[aria-pressed=true]{border:2px solid var(--accent);font-weight:700;padding:8px 11px}.question{background:white;padding:18px 22px;border:1px solid var(--line);margin-bottom:16px}.lanes{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:14px;align-items:start}.lane{min-width:0;background:white;border:1px solid var(--line);border-radius:8px;overflow:hidden}.lane h3{background:var(--paper);padding:12px 16px;margin:0;border-bottom:1px solid var(--line)}.body{padding:14px 16px;max-height:530px;overflow:auto;scrollbar-gutter:stable}.copy{white-space:pre-wrap;overflow-wrap:anywhere;unicode-bidi:plaintext}.source{padding:10px 0;border-bottom:1px solid var(--line)}summary{cursor:pointer;font-weight:600;overflow-wrap:anywhere}.source .copy{font-size:14px;margin-top:12px}.review,.details-panel{margin-top:18px;background:white;border:1px solid var(--line);border-radius:8px;padding:20px 22px}.scope-title{color:var(--accent);font-weight:700;margin:0 0 8px}.field{display:flex;flex-direction:column;gap:6px;margin:12px 0}.choices{display:flex;gap:12px;flex-wrap:wrap}.choices label{display:flex;align-items:center;gap:8px;min-height:44px;padding:5px 10px;border:1px solid var(--line);border-radius:6px}.choices input{min-height:0;accent-color:var(--accent)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}fieldset{border:0;padding:0;margin:0;min-width:0}.hidden{display:none!important}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;max-height:360px;overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.scroll{overflow:auto}.error-panel{border-color:#bd6c6c;background:#fff3f2}.backup-output{font-size:13px;overflow-wrap:anywhere}.history-preview{max-height:220px;overflow:auto}.progress{font-weight:600}footer{font-size:13px;padding-top:8px}.skip{position:absolute;top:-80px}.skip:focus{top:8px;background:white;padding:12px}.recovery-note{max-width:none}
+@media(max-width:1050px){.lanes{grid-template-columns:1fr 1fr}.lane:first-child{grid-column:1/-1}.lane:first-child .body{max-height:350px}.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){header,main,footer{padding:16px}header{padding-bottom:0}h1{font-size:24px}h2{font-size:20px}.lanes,.grid{grid-template-columns:1fr}.lane:first-child{grid-column:auto}.body{max-height:380px}.toolbar .push{margin-left:0}.nav select{flex-basis:100%;min-width:0}.review,.details-panel,.question{padding:16px}.choices{gap:8px}.toolbar input{max-width:100%}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+<script src="/app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#review-heading">검토 입력으로 이동</a>
+<header>
+  <h1>원문을 보며 작성하는 검토 노트</h1>
+  <p>우선 <strong>R08·R09·R12의 평가 범위</strong>만 판단해주세요. 이전 화면과 같은 원문·초안·최종 답변입니다. 이번 입력은 이 컴퓨터의 파일에 자동 저장됩니다.</p>
+  <div class="toolbar bar">
+    <label for="reviewer">검토자 <input id="reviewer" autocomplete="off" placeholder="이름 또는 이니셜" maxlength="120" disabled></label>
+    <span id="progress" class="progress">불러오는 중</span>
+    <button id="save-now" class="primary push" disabled>지금 파일에 저장</button>
+    <button id="export" disabled>검토 파일 백업</button>
+    <button id="history-button" disabled>이전 기록 보기</button>
+  </div>
+  <div id="save-status" class="status" role="status" aria-live="polite">저장 파일과 기존 입력을 확인하고 있습니다. 확인 전에는 입력할 수 없습니다.</div>
+  <div id="receipt" class="receipt"></div>
+  <div id="export-result" class="backup-output" role="status"></div>
+</header>
+<main>
+  <section id="recovery" class="details-panel error-panel hidden" aria-labelledby="recovery-heading">
+    <h3 id="recovery-heading">복원할 임시 입력이 있습니다</h3>
+    <p id="recovery-note" class="recovery-note"></p><pre id="recovery-preview"></pre>
+    <div class="bar"><button id="use-draft">내 임시 입력을 복원</button><button id="use-server">서버 기록으로 계속</button><button id="emergency">현재 입력 텍스트 보기</button></div>
+  </section>
+  <section id="history" class="details-panel hidden"><h3>이전 저장 기록</h3><p>복원하면 새 버전으로 저장합니다. 현재 기록과 과거 기록은 모두 남습니다.</p><div class="bar"><select id="history-select" aria-label="이전 저장 버전"></select><button id="history-preview-button">선택 기록 확인</button><button id="restore" disabled>선택 기록 복원</button></div><pre id="history-preview" class="history-preview"></pre></section>
+  <section id="emergency-panel" class="details-panel hidden"><h3>긴급 텍스트 백업</h3><p>아래 텍스트를 복사해 메모장이나 채팅에 보관하세요. 이 표시는 파일 저장 성공을 뜻하지 않습니다.</p><textarea id="emergency-text" readonly aria-label="현재 입력 JSON"></textarea><button id="copy-emergency">텍스트 전체 선택</button></section>
+  <div id="workspace" class="hidden">
+    <nav class="nav" aria-label="검토 문항 탐색"><button id="prev">← 이전</button><select id="case-select" aria-label="검토 문항"></select><button id="next">다음 →</button><label><input type="checkbox" id="all-cases"> 전체 14문항 보기</label><button class="run" data-run="0">run1</button><button class="run" data-run="1">run2</button><button class="run" data-run="2">run3</button></nav>
+    <section class="question"><small id="case-meta"></small><h2 id="question"></h2><small>이 화면은 개발용 검토입니다. 최종 홀드아웃·독립 2인 평가를 대신하지 않습니다.</small></section>
+    <div class="lanes">
+      <section class="lane"><h3>근거 · 검색 원문</h3><div id="sources" class="body"></div></section>
+      <section class="lane"><h3>모델 초안 · 후처리 전</h3><div id="draft" class="body copy"></div></section>
+      <section class="lane"><h3>최종 답변 · 실제 평가 대상</h3><div class="body"><div id="answer" class="copy"></div><details class="source"><summary>출처 표기 버전</summary><div id="cited-answer" class="copy"></div></details></div></section>
+    </div>
+    <fieldset id="review-fields" disabled>
+      <section id="scope-box" class="review"><p class="scope-title">우선 작성할 항목</p><h3 id="review-heading"></h3><p>특정 답변의 점수를 바꾸기보다, 같은 유형의 질문에 일관되게 적용할 기준으로 판단해주세요.</p>
+        <div class="choices" role="group" aria-label="필수 답변 범위"><label><input type="radio" name="scope" value="required"> 반드시 답해야 함</label><label><input type="radio" name="scope" value="optional"> 선택 정보로 봄</label><label><input type="radio" name="scope" value="uncertain"> 판단 보류</label></div>
+        <label class="field">판단 이유와 원문 근거<textarea id="scope-reason" maxlength="20000" placeholder="출처 번호와 근거 문구, 필수 또는 선택이라고 판단한 이유를 적어주세요."></textarea></label>
+      </section>
+      <details class="details-panel" id="diagnostic-panel"><summary>선택 · 답변 품질도 검토하기</summary><div class="grid">
+        <label class="field">답변의 사실이 근거에 맞나요?<select id="support"><option value="">미검토</option><option value="supported">근거에 맞음</option><option value="unsupported">미지지 사실·모순 있음</option><option value="no_factual_answer">사실 답변 없이 회피</option><option value="uncertain">판단 보류</option></select></label>
+        <label class="field">질문에 충분히 답했나요?<select id="completeness"><option value="">미검토</option><option value="complete">충분히 답함</option><option value="partial">필요한 내용 누락</option><option value="refusal">회피해서 답하지 않음</option><option value="uncertain">판단 보류</option></select></label>
+        <label class="field">초안에서 무엇이 바뀌었나요?<select id="postprocessing"><option value="not_checked">미검토</option><option value="no_material_change">큰 변화 없음</option><option value="lost_supported_claim">맞는 내용이 사라짐</option><option value="removed_unsupported_claim">잘못된 내용이 제거됨</option><option value="mixed">둘 다 있음</option><option value="uncertain">판단 보류</option></select></label>
+      </div><label class="field">답변 검토 메모<textarea id="note" maxlength="20000" placeholder="근거 일치·누락·후처리 영향에 대한 메모"></textarea></label></details>
+      <details class="details-panel"><summary>선택 · 주장별 후처리 기록</summary><pre id="claims"></pre></details>
+      <details id="judge-panel" class="details-panel"><summary>내 판단 후 · Judge와 기존 정답 기준 보기</summary><p>처음 보기 직전의 답변 품질 입력을 기록합니다. 기존 점수·정답은 변경하지 않습니다.</p><pre id="judge"></pre><label class="field">Judge 판정에 동의하나요?<select id="judge_agreement"><option value="not_checked">미검토</option><option value="agree">동의</option><option value="disagree">동의하지 않음</option><option value="uncertain">판단 보류</option></select></label></details>
+    </fieldset>
+  </div>
+</main>
+<footer>‘파일 저장 확인’이 표시된 버전은 디스크와 버전별 JSON을 대조한 상태입니다. 저장 중 강제 종료·디스크 손상까지 무손실을 보장하지는 않습니다. 입력을 마친 뒤 ‘검토 파일 백업’을 한 번 눌러주세요. 외부 서버·LLM·분석 추적 요청은 없습니다.</footer>
+<noscript>이 검토 화면은 JavaScript가 필요합니다. 입력을 시작하지 말고 Chrome에서 제공된 로컬 주소를 열어주세요.</noscript>
+</body>
+</html>

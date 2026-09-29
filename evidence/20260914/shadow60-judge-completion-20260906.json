@@ -1,0 +1,248 @@
+{
+  "schema_version": "pnu.shadow-judge-completion-audit.v1",
+  "date": "2026-09-06",
+  "full_shadow60_evaluation_complete": false,
+  "cases_path": "config/pnu-service-shadow60-v1.jsonl",
+  "cases_sha256": "0906e6c8de40040915e668e6cf61639306657e6f94f41e5bcdf62197a6d90754",
+  "runs": [
+    {
+      "generation_run_id": "run1",
+      "answers_path": "processed/eval/preflight-20260905/shadow60-generation-v1/c1-run1.answers.jsonl",
+      "answers_sha256": "9202f4fd9e0bf3ad8447d4f3f72ef2ddeffff0672fb8e26dc10d48970772d8c6",
+      "judgments_path": "processed/eval/preflight-20260906/shadow60-judge-v11-v1/judge/c1-run1-judge-v11-r1.jsonl",
+      "judgments_sha256": "ee836fd7525e9b3a3053492dff4ebbc438a2c59b86816ed9009d58a5216580b8",
+      "judgments": 60,
+      "valid_judgments": 60,
+      "http_attempts": 62
+    },
+    {
+      "generation_run_id": "run2",
+      "answers_path": "processed/eval/preflight-20260905/shadow60-generation-v1/c1-run2.answers.jsonl",
+      "answers_sha256": "d85a141c53e3f3b33003ed78f46f009aab11a67af408916cca39ecae53e7f599",
+      "judgments_path": "processed/eval/preflight-20260906/shadow60-judge-v11-v1/judge/c1-run2-judge-v11-r1.jsonl",
+      "judgments_sha256": "948a0565cc75b3dd4362b1b7c90a4dcbb0aae83bc7f87a0a010f6021a769b0a2",
+      "judgments": 60,
+      "valid_judgments": 59,
+      "http_attempts": 65
+    },
+    {
+      "generation_run_id": "run3",
+      "answers_path": "processed/eval/preflight-20260905/shadow60-generation-v1/c1-run3.answers.jsonl",
+      "answers_sha256": "dcbc047e4b1a10005bcb2866b5b7db3c758f64148bcc02dd9fa2ad94954ccaf2",
+      "judgments_path": "processed/eval/preflight-20260906/shadow60-judge-v11-v1/judge/c1-run3-judge-v11-r1.jsonl",
+      "judgments_sha256": "9696e70080c9744f51d498870cd3af557918a2cb808e2dc911f3d7b4b25af2b1",
+      "judgments": 60,
+      "valid_judgments": 58,
+      "http_attempts": 73
+    }
+  ],
+  "judge_config_sha256": "c165059daa5903b74d9b7fe260856419b697721ecc1e869a701aa0c85dc18fce",
+  "total_judgment_slots": 180,
+  "valid_judgments": 177,
+  "terminal_judge_errors": [
+    {
+      "case_id": "shadow_challenge_ambiguity_02",
+      "generation_run_id": "run2",
+      "error": "holdout claim_checks coverage error: duplicate=none, unknown=['abstention_claim'], missing=none",
+      "attempts": 6
+    },
+    {
+      "case_id": "shadow_challenge_ambiguity_02",
+      "generation_run_id": "run3",
+      "error": "holdout claim_checks coverage error: duplicate=none, unknown=['unsupported_specificity'], missing=none",
+      "attempts": 6
+    },
+    {
+      "case_id": "shadow_challenge_ambiguity_03",
+      "generation_run_id": "run3",
+      "error": "holdout claim_checks coverage error: duplicate=none, unknown=['unsupported_specificity'], missing=none",
+      "attempts": 6
+    }
+  ],
+  "http_attempts_total_including_prior_15": 200,
+  "http_attempts_this_approval": 185,
+  "new_logical_judgments_this_approval": 165,
+  "technical_retry_attempts_this_approval": 20,
+  "groups": {
+    "core": {
+      "questions": 42,
+      "expected_judgments": 126,
+      "valid_judgments": 126,
+      "complete": true,
+      "run_gfc_counts": [
+        14,
+        17,
+        13
+      ],
+      "mean_score_0_to_2": 1.1111111111111112,
+      "majority_gfc_count": 15
+    },
+    "simple": {
+      "questions": 24,
+      "expected_judgments": 72,
+      "valid_judgments": 72,
+      "complete": true,
+      "run_gfc_counts": [
+        10,
+        11,
+        9
+      ],
+      "mean_score_0_to_2": 1.2777777777777777,
+      "majority_gfc_count": 10
+    },
+    "multi": {
+      "questions": 18,
+      "expected_judgments": 54,
+      "valid_judgments": 54,
+      "complete": true,
+      "run_gfc_counts": [
+        4,
+        6,
+        4
+      ],
+      "mean_score_0_to_2": 0.8888888888888888,
+      "majority_gfc_count": 5
+    },
+    "role_variant": {
+      "questions": 8,
+      "expected_judgments": 24,
+      "valid_judgments": 24,
+      "complete": true,
+      "run_gfc_counts": [
+        2,
+        3,
+        2
+      ],
+      "mean_score_0_to_2": 1.1666666666666667,
+      "majority_gfc_count": 2
+    },
+    "unanswerable": {
+      "questions": 4,
+      "expected_judgments": 12,
+      "valid_judgments": 12,
+      "complete": true,
+      "run_gfc_counts": [
+        4,
+        4,
+        4
+      ],
+      "mean_score_0_to_2": 2,
+      "majority_gfc_count": 4
+    },
+    "scope_version_ambiguity": {
+      "questions": 3,
+      "expected_judgments": 9,
+      "valid_judgments": 6,
+      "complete": false,
+      "run_gfc_counts": [
+        0,
+        0,
+        0
+      ],
+      "mean_score_0_to_2": null,
+      "majority_gfc_count": null
+    },
+    "prompt_injection": {
+      "questions": 3,
+      "expected_judgments": 9,
+      "valid_judgments": 9,
+      "complete": true,
+      "run_gfc_counts": [
+        0,
+        0,
+        0
+      ],
+      "mean_score_0_to_2": 0.3333333333333333,
+      "majority_gfc_count": 0
+    },
+    "all_answerable": {
+      "questions": 53,
+      "expected_judgments": 159,
+      "valid_judgments": 159,
+      "complete": true,
+      "run_gfc_counts": [
+        16,
+        20,
+        15
+      ],
+      "mean_score_0_to_2": 1.0754716981132075,
+      "majority_gfc_count": 17
+    },
+    "all": {
+      "questions": 60,
+      "expected_judgments": 180,
+      "valid_judgments": 177,
+      "complete": false,
+      "run_gfc_counts": [
+        20,
+        24,
+        19
+      ],
+      "mean_score_0_to_2": null,
+      "majority_gfc_count": null
+    }
+  },
+  "core_question_cross_table": [
+    {
+      "atomic_all_evidence_at_8": false,
+      "majority_gfc": false,
+      "questions": 16
+    },
+    {
+      "atomic_all_evidence_at_8": false,
+      "majority_gfc": true,
+      "questions": 5
+    },
+    {
+      "atomic_all_evidence_at_8": true,
+      "majority_gfc": false,
+      "questions": 11
+    },
+    {
+      "atomic_all_evidence_at_8": true,
+      "majority_gfc": true,
+      "questions": 10
+    }
+  ],
+  "valid_judgment_failure_labels_multilabel": {
+    "required_claim_missing": 63,
+    "inappropriate_abstention": 80,
+    "explicit_refusal_guard": 23,
+    "unsupported_fact": 12,
+    "contradiction": 5,
+    "partial_citation": 6
+  },
+  "all_180_service_claim_reasons": {
+    "supported": 413,
+    "critical_value_mismatch": 54,
+    "semantic_relation_mismatch": 65,
+    "model_abstention": 69,
+    "low_lexical_overlap": 6
+  },
+  "independent_core_arithmetic_matches_analyzer": true,
+  "notes": [
+    "No error is converted to score zero or raw Judge score.",
+    "Incomplete cohorts have null mean and majority GFC. Run GFC counts in those cohorts are only counts among valid judgments.",
+    "Generation repeats are not additional independent questions; all 60 questions represent 49 families, core 42 represent 42 source families.",
+    "Prompt-injection GFC measures grounded task completion, not attack success rate.",
+    "C0/C2 generation not collected on Shadow60; no improvement estimate."
+  ],
+  "core_result": {
+    "path": "processed/eval/preflight-20260906/shadow60-judge-v11-v1/analysis/c1-core42-3run-v11.json",
+    "sha256": "a0ad14a26d488941a8805fa105fae651856f2c4201ea384f60a49c9ff433e1d6"
+  },
+  "validation": {
+    "full_unittest": 803,
+    "skipped": 6,
+    "failed": 0,
+    "post_final_loader_check_focused_tests": 10,
+    "lint": "PASS",
+    "build": "PASS"
+  },
+  "frozen_files": {
+    "scripts/search_api.py": "9a8865db361d6d3a044d26fc57698f56840540ed573a5f37bb50ef684c1cf4a5",
+    "scripts/bm25_search.py": "6c474dc83a4f27ab3172de5b839f731e9954206b1d3cb1748dc08f3848cb1ad7",
+    "scripts/rag/generators.py": "67cccfd602b808929c226fcbb659635495e50e05103592664020c6c3a725166b",
+    "scripts/judge_service_answers.py": "95b653d336058bc8eb8829c64472a3ad94162bc3a08d87400f0391e7b06e7414"
+  }
+}

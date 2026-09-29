@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; img-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Shadow14 · 답변 진단 노트</title>
+<style>
+:root{--ink:#20344b;--muted:#586b7c;--accent:#255ca8;--paper:#edf2f7;--line:#c7d2de;--white:#fff}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--paper);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Malgun Gothic",sans-serif}
+header,main{max-width:1700px;margin:auto;padding:24px 32px}header{padding-bottom:12px}h1,h2,h3{font-family:"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.4}h1{font-size:30px;letter-spacing:-.035em;margin:4px 0 8px}h2{font-size:23px;margin:8px 0 12px}h3{font-size:16px;margin:0 0 10px}p{margin:6px 0 12px}.kicker,.mono{font-family:Menlo,Consolas,monospace;overflow-wrap:anywhere}.kicker{font-size:12px;letter-spacing:.1em;color:var(--accent)}.muted,small{color:var(--muted)}small{font-size:12px}.intro{max-width:1000px}.bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.toolbar{padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:14px 0}.toolbar label{display:flex;gap:8px;align-items:center}button,input,select,textarea{font:inherit;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:9px 12px;background:var(--white)}button{cursor:pointer;min-height:44px}button.primary{background:var(--accent);color:var(--white);border-color:var(--accent)}button:disabled{opacity:.45;cursor:default}button:hover:not(:disabled){outline:1px solid var(--accent)}:focus-visible{outline:3px solid var(--accent);outline-offset:3px}input{max-width:230px}.toolbar .push{margin-left:auto}.status{font-size:13px;min-height:22px}main{padding-top:0}.nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:12px 0}.nav select{min-width:280px;max-width:100%;flex:1}.run-buttons{display:flex;gap:6px}.run-buttons button[aria-pressed=true]{border:2px solid var(--accent);padding:8px 11px;color:var(--accent);font-weight:700}.question{background:var(--white);padding:22px 24px;border:1px solid var(--line);border-left:5px solid var(--accent);margin:10px 0 18px}.question small{display:block}.lanes{display:grid;grid-template-columns:1.08fr 1fr 1fr;gap:16px;align-items:start}.lane{background:var(--white);border:1px solid var(--line);border-radius:8px;min-width:0;overflow:hidden}.lane-head{padding:13px 18px;background:var(--paper);border-bottom:1px solid var(--line)}.lane-head b{display:block}.lane-body{padding:16px 18px;max-height:620px;overflow:auto;scrollbar-gutter:stable}.copy{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8}.source{border-bottom:1px solid var(--line);padding:10px 0}.source:last-child{border-bottom:0}summary{cursor:pointer;font-weight:600;overflow-wrap:anywhere}summary small{display:block;font-weight:400}.source .copy{font-size:14px;margin:12px 0}.doc-id{font-size:11px;margin-top:10px;color:var(--muted)}.review-box,.inspect{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:20px 24px;margin-top:18px}.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.field{display:flex;flex-direction:column;gap:6px}.field select{width:100%}.full{grid-column:1/-1}textarea{resize:vertical;min-height:86px;width:100%}.step{color:var(--accent);font-size:13px;font-weight:700;margin-bottom:6px}.inspect summary{font-size:16px}.inspect-body{margin-top:16px}.judge-summary{border-left:3px solid var(--accent);padding:4px 14px;margin-bottom:15px}table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}th{color:var(--muted);font-weight:600}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;max-height:360px;overflow:auto}.table-scroll{overflow:auto}.notice{padding:12px 0;font-size:13px;color:var(--muted)}.bottom{justify-content:space-between;margin:20px 0}.pill{font-size:12px;background:var(--paper);padding:4px 9px;border-radius:5px}.hidden{display:none!important}footer{border-top:1px solid var(--line);padding:16px 0 30px;font-size:12px;color:var(--muted)}noscript{display:block;padding:30px}
+@media(max-width:1050px){.lanes{grid-template-columns:1fr 1fr}.lane:first-child{grid-column:1/-1}.lane:first-child .lane-body{max-height:380px}.fields{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){header,main{padding:18px 16px}main{padding-top:0}h1{font-size:26px}h2{font-size:20px}.lanes,.fields{grid-template-columns:1fr}.lane:first-child{grid-column:auto}.lane-body{max-height:460px}.toolbar .push{margin-left:0;width:100%}.question,.review-box,.inspect{padding:16px}.nav select{min-width:0;width:100%;flex-basis:100%}.toolbar label{flex-wrap:wrap}.bar input{max-width:100%}.run-buttons{width:100%}.run-buttons button{flex:1}}
+@media print{button,.toolbar,.nav,.review-box{display:none!important}.lanes{display:block}.lane{margin-bottom:16px;break-inside:avoid}.lane-body{max-height:none;overflow:visible}body{background:var(--white)}}
+</style>
+</head>
+<body>
+<header>
+  <div class="kicker">PNU · SHADOW DIAGNOSTIC / 2026.09.07</div>
+  <h1>답변이 달라진 지점을 찾는 검토 노트</h1>
+  <p class="intro">원문과 답변을 직접 비교하는 <strong>14문항</strong>입니다. 우선 <strong>run1</strong>만 확인하세요. run2·run3는 선택 사항입니다.<br>사람이 먼저 판단한 뒤 Judge를 펼쳐 보세요. 답변이나 기존 점수는 여기서 바뀌지 않습니다.</p>
+  <div class="toolbar bar">
+    <label for="reviewer">검토자 이름 <input id="reviewer" autocomplete="off" placeholder="이름 또는 이니셜"></label>
+    <span id="progress" class="pill"></span>
+    <button id="export" class="primary push">검토 결과 JSON 내려받기</button>
+    <button id="import">저장한 결과 불러오기</button><input id="import-file" class="hidden" type="file" accept=".json,application/json">
+  </div>
+  <div id="storage-status" class="status" role="status" aria-live="polite"></div>
+</header>
+<main>
+  <nav class="nav" aria-label="검토 문항 탐색">
+    <button id="prev" aria-label="이전 문항">← 이전</button>
+    <label for="case-select" class="hidden">검토 문항</label><select id="case-select" aria-label="검토 문항"></select>
+    <button id="next" aria-label="다음 문항">다음 →</button>
+    <div class="run-buttons" aria-label="생성 회차">
+      <button data-run="0">run1 · 우선</button><button data-run="1">run2 · 선택</button><button data-run="2">run3 · 선택</button>
+    </div>
+  </nav>
+  <section class="question"><small id="case-meta"></small><h2 id="question"></h2><small>정답 여부는 아직 표시하지 않습니다. 검색 원문은 당시 모델에 전달된 저장 텍스트입니다.</small></section>
+  <div class="lanes">
+    <section class="lane"><div class="lane-head"><b>근거 · 검색 원문</b><small>출처 번호는 당시 검색 순서 그대로</small></div><div id="sources" class="lane-body"></div></section>
+    <section class="lane"><div class="lane-head"><b>생성 · 모델 초안</b><small>후처리 이전 · 정답으로 간주하지 마세요</small></div><div id="draft" class="lane-body copy"></div></section>
+    <section class="lane"><div class="lane-head"><b>출력 · 최종 답변</b><small>저장된 answer 필드 · 실제 Judge 대상</small></div><div class="lane-body"><div id="answer" class="copy"></div><details class="source"><summary>출처 표기 버전 보기</summary><div id="cited-answer" class="copy"></div></details></div></section>
+  </div>
+  <section class="review-box" aria-labelledby="review-heading">
+    <div class="step">먼저 · 내 판단</div><h3 id="review-heading">근거와 질문을 기준으로 골라주세요</h3>
+    <div class="fields">
+      <label class="field">최종 답변의 사실은 근거에 맞나요?<select id="support"><option value="">아직 검토하지 않음</option><option value="supported">답변의 사실은 근거에 맞음</option><option value="unsupported">근거 없는 사실·모순이 있음</option><option value="no_factual_answer">사실 답변 없이 회피함</option><option value="uncertain">판단 보류</option></select></label>
+      <label class="field">질문에 빠짐없이 답했나요?<select id="completeness"><option value="">아직 검토하지 않음</option><option value="complete">질문에 충분히 답함</option><option value="partial">필요한 내용이 빠짐</option><option value="refusal">회피해서 답하지 않음</option><option value="uncertain">판단 보류</option></select></label>
+      <label class="field">초안 → 최종 답변에서 무엇이 바뀌었나요?<select id="postprocessing"><option value="not_checked">아직 비교하지 않음</option><option value="no_material_change">의미상 큰 변화 없음</option><option value="lost_supported_claim">근거가 맞는 내용이 사라짐</option><option value="removed_unsupported_claim">잘못된·미지지 내용이 제거됨</option><option value="mixed">올바른 제거와 잘못된 제거가 섞임</option><option value="uncertain">판단 보류</option></select></label>
+      <label class="field full">확인한 근거와 이유 <textarea id="note" placeholder="예: 출처 #2에는 신청 마감이 5월 31일 18시라고 나옵니다. 초안에는 있지만 최종 답변에는 없습니다."></textarea></label>
+    </div>
+    <p class="notice" id="completion-note">위 세 항목과 메모를 작성하면 이 회차를 검토 완료로 표시합니다. 판단 보류도 기록할 수 있습니다.</p>
+  </section>
+  <details class="inspect" id="trace-panel"><summary>필요할 때 · 주장별 후처리 로그</summary><div class="inspect-body"><p class="muted">자동 검증 결과입니다. 거부된 주장이 반드시 틀렸다는 뜻은 아닙니다.</p><div id="service-claims"></div><details><summary>정제 초안·후처리 메타데이터</summary><pre id="postprocess-json"></pre></details></div></details>
+  <details class="inspect" id="judge-panel"><summary>내 판단 후 · Judge 판정과 고정 정답 기준 펼치기</summary><div class="inspect-body">
+    <p class="muted">처음 펼치기 직전의 사람 입력을 별도로 보존합니다. Judge를 본 뒤에도 입력을 바꿀 수 있지만, 최초 노출 시점은 남습니다.</p>
+    <div id="judge-summary" class="judge-summary"></div>
+    <label class="field">이 답변의 Judge 판정에 동의하나요?<select id="judge_agreement"><option value="not_checked">아직 비교하지 않음</option><option value="agree">동의함</option><option value="disagree">동의하지 않음</option><option value="uncertain">판단 보류</option></select></label>
+    <div id="gold"></div>
+    <details><summary>Judge 확정 판정·guard 적용 전 값·선정 근거</summary><pre id="judge-json"></pre></details>
+    <p class="notice">guard 적용 전 값은 디버깅 기록이며 대체 점수가 아닙니다. 이 표본으로 정확도나 Judge 일치율을 추정하지 않습니다.</p>
+  </div></details>
+  <div class="bar bottom"><span id="current-status" role="status"></span><button id="next-bottom">다음 문항 →</button></div>
+  <footer>실패 11문항 + 목적 표집 성공 대조 3문항. 공식 holdout 검수나 2인 calibration이 아닙니다. 초기 점수 노출을 줄이는 화면이며 완전한 블라인드는 아닙니다.<br>외부 요청·분석 추적 없음. 입력은 이 브라우저에만 임시 저장됩니다. 검토 결과를 파일로 내려받아 전달하세요.</footer>
+</main>
+<noscript>JavaScript를 사용할 수 없습니다. 같은 폴더의 packet.json과 review-template.json으로 원문을 검토하고 판정을 기록하세요.</noscript>
+<script>
+"use strict";
+const PACKET=__PACKET_JSON__;
+const EMPTY=__LABELS_JSON__;
+const KEY="pnu-shadow14-review:"+EMPTY.packet_sha256;
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const json=v=>JSON.stringify(v,null,2);
+const fields=["support","completeness","postprocessing","judge_agreement","note"];
+const enums={support:["","supported","unsupported","no_factual_answer","uncertain"],completeness:["","complete","partial","refusal","uncertain"],postprocessing:["not_checked","no_material_change","lost_supported_claim","removed_unsupported_claim","mixed","uncertain"],judge_agreement:["not_checked","agree","disagree","uncertain"]};
+let labels=structuredClone(EMPTY),caseIndex=0,runIndex=0,storageOK=true;
+const status=r=>(r.support&&r.completeness&&r.postprocessing!=="not_checked"&&r.note.trim())?"REVIEWED":"PENDING";
+function validateLabels(value){
+  if(!value||value.schema_version!==EMPTY.schema_version||value.packet_sha256!==EMPTY.packet_sha256||value.purpose!==EMPTY.purpose||typeof value.reviewer!=="string"||!Array.isArray(value.reviews)||value.reviews.length!==EMPTY.reviews.length)throw Error("다른 패킷이거나 형식이 맞지 않는 파일입니다.");
+  const seen=new Set();
+  for(const r of value.reviews){
+    const base=EMPTY.reviews.find(b=>b.answer_id===r.answer_id);
+    if(!base||seen.has(r.answer_id)||["case_id","review_id","generation_run_id","answer_sha256"].some(k=>r[k]!==base[k]))throw Error("답변 ID·해시 결속이 맞지 않습니다.");
+    seen.add(r.answer_id);
+    for(const [k,values] of Object.entries(enums))if(!values.includes(r[k]))throw Error("허용되지 않은 판정 값입니다.");
+    if(typeof r.note!=="string"||!["PENDING","REVIEWED"].includes(r.status)||r.status!==status(r))throw Error("검토 상태·메모 형식이 맞지 않습니다.");
+    if(r.judge_revealed_at!==null&&(typeof r.judge_revealed_at!=="string"||Number.isNaN(Date.parse(r.judge_revealed_at))))throw Error("Judge 노출 기록 형식이 맞지 않습니다.");
+    if(r.judge_revealed_at===null){if(r.labels_before_judge!==null||r.judge_agreement!=="not_checked")throw Error("Judge 노출 전 판정 기록이 맞지 않습니다.");}
+    else{const b=r.labels_before_judge;if(!b||typeof b.note!=="string"||["support","completeness","postprocessing"].some(k=>!enums[k].includes(b[k])))throw Error("Judge 노출 전 입력 기록이 누락됐습니다.");}
+  }
+  return value;
+}
+try{const saved=localStorage.getItem(KEY);if(saved)labels=validateLabels(JSON.parse(saved));}catch(e){storageOK=false;$("storage-status").textContent="임시 저장을 사용할 수 없거나 저장 내용이 유효하지 않습니다. 파일을 내려받아 보관하세요.";}
+const currentItem=()=>PACKET.items[caseIndex];
+const currentRun=()=>currentItem().runs[runIndex];
+const currentLabel=()=>labels.reviews.find(r=>r.answer_id===currentRun().answer_id);
+function save(){
+  try{localStorage.setItem(KEY,json(labels));storageOK=true;$("storage-status").textContent="이 브라우저에 임시 저장됨 · 종료 전 JSON 파일을 내려받아 보관하세요.";}catch(e){storageOK=false;$("storage-status").textContent="임시 저장 실패 · 지금 JSON을 내려받으세요. 페이지를 닫으면 입력이 사라질 수 있습니다.";}
+}
+function progress(){
+  const n=labels.reviews.filter(r=>r.generation_run_id==="run1"&&r.status==="REVIEWED").length;
+  const extra=labels.reviews.filter(r=>r.generation_run_id!=="run1"&&r.status==="REVIEWED").length;
+  $("progress").textContent=`우선 검토 ${n}/14 · 선택 검토 ${extra}/28`;
+  $("current-status").textContent=`${currentItem().review_id} / ${currentRun().generation_run_id} · ${currentLabel().status==="REVIEWED"?"검토 완료":"검토 중"}`;
+  [...$("case-select").options].forEach((o,i)=>{const item=PACKET.items[i];const r=labels.reviews.find(x=>x.answer_id===item.runs[0].answer_id);o.textContent=`${r.status==="REVIEWED"?"✓ ":""}${item.review_id} · ${item.question.slice(0,54)}`;});
+}
+function update(){const r=currentLabel();fields.forEach(k=>r[k]=$(k).value);r.status=status(r);save();progress();}
+function claimTable(claims){return `<div class="table-scroll"><table><thead><tr><th>주장</th><th>서비스 판정</th></tr></thead><tbody>${claims.map(c=>`<tr><td>${esc(c.text)}<small class="copy">\n출처 ${esc((c.source_numbers||[]).join(", ")||"연결 없음")}</small></td><td>${c.supported===true?"허용":c.supported===false?"거부":"기록 없음"}<small class="copy">\n${esc(c.validation_reason)}\n${esc((c.missing_critical_values||[]).join(", "))}</small></td></tr>`).join("")}</tbody></table></div><details><summary>검증 인용문 전체</summary><pre>${esc(json(claims))}</pre></details>`;}
+function renderJudge(){
+  const item=currentItem(),run=currentRun(),j=run.judge;
+  $("judge-summary").innerHTML=`<b>기존 v11 판정: ${esc(j.score)}/2 · ${j.grounded_fully_correct?"GFC":"비GFC"}</b><p class="copy">${esc(j.reason)}</p>`;
+  $("gold").innerHTML=`<h3 style="margin-top:20px">고정 정답 기준 · 수정하지 않음</h3>${item.required_claims.map(c=>`<section class="source"><b>${esc(c.claim_id)} · ${esc(c.description)}</b>${(c.evidence_options||[]).map(e=>`<details><summary>정답 기준에 저장된 근거 인용<small>${esc(e.evidence_chunk_id)}</small></summary><div class="copy">${esc(e.quote)}</div></details>`).join("")}</section>`).join("")}`;
+  $("judge-json").textContent=json({judge:j,judge_guard:run.judge_guard,selection:item.selection,judgment_id:run.judgment_id});
+}
+function render(){
+  const item=currentItem(),run=currentRun(),r=currentLabel();
+  $("judge-panel").open=false;$("trace-panel").open=false;
+  $("case-select").value=String(caseIndex);$("case-meta").textContent=`${item.review_id} / 14 · ${item.case_id} · ${run.generation_run_id}`;
+  $("question").textContent=item.question;$("draft").textContent=run.raw_draft;$("answer").textContent=run.answer;$("cited-answer").textContent=run.cited_answer??"출처 표기 버전 기록 없음";
+  const goldIds=new Set(item.required_claims.flatMap(c=>(c.evidence_options||[]).map(e=>e.evidence_chunk_id)));
+  $("sources").innerHTML=run.contexts.map((c,i)=>`<details class="source" ${goldIds.has(c.chunk_id)?"open":""}><summary>#${esc(c.source_number??i+1)} · ${esc(c.source_title||"제목 없음")}<small>${esc(c.chunk_id)}</small></summary><div class="copy">${esc(c.text)}</div><div class="doc-id mono">${esc(c.source_url||"")}<br>text SHA-256: ${esc(c.text_sha256||"기록 없음")}</div></details>`).join("");
+  $("sources").scrollTop=0;$("draft").scrollTop=0;$("answer").parentElement.scrollTop=0;
+  $("service-claims").innerHTML=claimTable(run.claims);$("postprocess-json").textContent=json({sanitized_draft:run.sanitized_draft,postprocessing:run.postprocessing});
+  renderJudge();fields.forEach(k=>$(k).value=r[k]);
+  document.querySelectorAll("[data-run]").forEach(b=>b.setAttribute("aria-pressed",String(Number(b.dataset.run)===runIndex)));
+  $("prev").disabled=caseIndex===0;$("next").disabled=caseIndex===PACKET.items.length-1;$("next-bottom").disabled=$("next").disabled;
+  progress();
+}
+$("case-select").innerHTML=PACKET.items.map((item,i)=>`<option value="${i}">${esc(item.review_id)}</option>`).join("");
+$("reviewer").value=labels.reviewer;
+$("reviewer").addEventListener("input",()=>{labels.reviewer=$("reviewer").value;save();});
+fields.forEach(k=>$(k).addEventListener(k==="note"?"input":"change",update));
+function navigate(i){caseIndex=i;runIndex=0;render();}
+$("case-select").addEventListener("change",()=>navigate(Number($("case-select").value)));
+$("prev").addEventListener("click",()=>navigate(caseIndex-1));
+$("next").addEventListener("click",()=>navigate(caseIndex+1));
+$("next-bottom").addEventListener("click",()=>{navigate(caseIndex+1);$("question").scrollIntoView({block:"start"});});
+document.querySelectorAll("[data-run]").forEach(b=>b.addEventListener("click",()=>{runIndex=Number(b.dataset.run);render();}));
+// Record exposure synchronously BEFORE the summary's default toggle action;
+// a delayed toggle event could otherwise attach it to the next case.
+$("judge-panel").querySelector("summary").addEventListener("click",()=>{
+  if(!$("judge-panel").open){const r=currentLabel();if(!r.judge_revealed_at){r.judge_revealed_at=new Date().toISOString();r.labels_before_judge={support:r.support,completeness:r.completeness,postprocessing:r.postprocessing,note:r.note};save();}}
+});
+$("export").addEventListener("click",()=>{
+  if(!labels.reviewer.trim()){$("storage-status").textContent="내려받기 전에 검토자 이름을 입력하세요.";$("reviewer").focus();return;}
+  const result=structuredClone(labels);result.exported_at=new Date().toISOString();
+  validateLabels(result);
+  const url=URL.createObjectURL(new Blob([json(result)+"\n"],{type:"application/json"}));
+  const a=document.createElement("a");a.href=url;a.download=`shadow14-human-review-${result.exported_at.replace(/[:.]/g,"-")}.json`;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  $("storage-status").textContent="JSON 다운로드를 요청했습니다. 다운로드 폴더에서 파일을 확인해 전달하세요.";
+});
+$("import").addEventListener("click",()=>$("import-file").click());
+$("import-file").addEventListener("change",async()=>{
+  const file=$("import-file").files[0];if(!file)return;
+  try{
+    if(file.size>2000000)throw Error("검토 JSON은 2MB 이하여야 합니다.");
+    const imported=validateLabels(JSON.parse(await file.text()));
+    if(labels.reviews.some(r=>r.note||r.support||r.completeness||r.judge_revealed_at)&&!window.confirm("현재 브라우저 입력을 선택한 파일로 대체할까요? 아직 보관하지 않았다면 취소 후 먼저 JSON을 내려받으세요."))return;
+    labels=imported;$("reviewer").value=labels.reviewer;save();render();
+  }catch(e){$("storage-status").textContent="불러오기 실패: "+e.message;}
+  finally{$("import-file").value="";}
+});
+render();
+if(storageOK)$("storage-status").textContent="추가 API 호출 없음 · 입력은 자동으로 임시 저장되며, 전달하려면 JSON을 내려받아야 합니다.";
+</script>
+</body>
+</html>

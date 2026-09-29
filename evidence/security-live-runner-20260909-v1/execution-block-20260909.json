@@ -1,0 +1,15 @@
+{
+  "date": "2026-09-09",
+  "status": "BLOCKED_CONTENT_EXPORT_CONFIRMATION_REQUIRED",
+  "stage": "exec_command CreateProcess authorization review",
+  "live_process_started": false,
+  "real_key_read": false,
+  "external_llm_calls": 0,
+  "live_ledger_created": false,
+  "reason": "Execution reviewer rejected export of retrieved evidence, generated answers, gold data and rubrics to Google Gemini because explicit authorization for potentially sensitive content transmission was not sufficiently clear.",
+  "existing_user_approval": "Evaluation calls up to 918 total, one key first, notify before approaching a declared daily 500-call limit.",
+  "next_required_confirmation": "Explicit user consent to send the evaluation questions, retrieved document excerpts, gold evidence, generated answers and grading rubric to Google Gemini API.",
+  "workaround_attempted": false,
+  "local_verification": "processed/eval/preflight-20260909/security-live-runner-v1/local-v1/run/completion.json",
+  "local_verification_sha256": "aa821c5c74d61a5b56a8dd7661e2a0b1387a079657f7dc5cd1dbfdefc2345340"
+}
