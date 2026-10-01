@@ -109,10 +109,11 @@ export const suggestedQuestions = [
     icon: ListChecks,
   },
   {
-    label: '임직원 행동강령 핵심 내용',
+    label: '국외출장 예외 기준이 궁금해요',
     institution: '한국인터넷진흥원(KISA)',
     category: '규정 확인',
-    question: 'KISA 임직원 행동강령의 주요 내용을 알려줘',
+    question:
+      '이해관계가 있는 민간 기업이 여비를 지원하는 국외출장이 예외적으로 허용되는 경우는?',
     icon: ShieldCheck,
   },
   {
