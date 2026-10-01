@@ -88,14 +88,14 @@ it('starts from recommendations, sends the selected institution and opens the ex
   expect(document.activeElement).toBe(
     screen.getByRole('textbox', { name: '질문 입력' }),
   )
-  fireEvent.click(screen.getByRole('button', { name: /학교 생활휴학은/ }))
+  fireEvent.click(screen.getByRole('button', { name: /학교 생활기숙사 공지는/ }))
   expect(
     (
       screen.getByRole('textbox', {
         name: '질문 입력',
       }) as HTMLTextAreaElement
     ).value,
-  ).toContain('부산대학교')
+  ).toContain('대학생활원')
   fireEvent.click(screen.getByRole('button', { name: '질문 보내기' }))
   await screen.findByRole('button', { name: '출처 2개' })
   expect(chat.mock.calls[0][0].institution).toBe('부산대학교')

@@ -1,4 +1,13 @@
-import { BookOpen, FileText, GraduationCap, Landmark } from 'lucide-react'
+import {
+  Award,
+  BookOpen,
+  FileText,
+  Globe,
+  GraduationCap,
+  Landmark,
+  ListChecks,
+  ShieldCheck,
+} from 'lucide-react'
 import type { RoleOption } from '../api/rag'
 import { positiveIntegerSetting } from './settings'
 
@@ -55,20 +64,21 @@ export const defaultInstitutions = [
   '한국해양과학기술원',
 ]
 
+// 2026-10-01 시연 전 실제 호출로 근거 연결을 확인한 질문 (logs/demo-questions-20261001.json).
 export const suggestedQuestions = [
   {
-    label: '휴학은 어떻게 신청하나요?',
+    label: '기숙사 공지는 어디서 보나요?',
     institution: '부산대학교',
     category: '학교 생활',
-    question: '부산대학교 휴학 신청 절차와 주의할 점을 알려줘',
+    question: '대학생활원 공지사항은 어디서 확인하고 개별 문자도 보내주나요?',
     icon: GraduationCap,
   },
   {
-    label: '상장폐지 제도가 궁금해요',
-    institution: '한국거래소',
-    category: '제도 이해',
-    question: '상장폐지 제도 개선 내용을 핵심만 알려줘',
-    icon: Landmark,
+    label: '교환학생 지원 자격이 궁금해요',
+    institution: '부산대학교',
+    category: '국제 교류',
+    question: '교환학생 프로그램 지원 자격을 알려줘',
+    icon: Globe,
   },
   {
     label: '신탁 현황을 요약해 주세요',
@@ -83,6 +93,34 @@ export const suggestedQuestions = [
     category: '문서 탐색',
     question: '한국은행 지급결제 리스크 관련 내용을 설명해줘',
     icon: BookOpen,
+  },
+  {
+    label: '코스닥 상장심사 절차는?',
+    institution: '한국거래소',
+    category: '제도 이해',
+    question: '코스닥 상장심사 절차를 알려줘',
+    icon: Landmark,
+  },
+  {
+    label: 'e-SAFE 사용자 신고 방법',
+    institution: '한국예탁결제원',
+    category: '절차 안내',
+    question: 'e-SAFE 사용자 신고는 어떻게 하나요?',
+    icon: ListChecks,
+  },
+  {
+    label: '임직원 행동강령 핵심 내용',
+    institution: '한국인터넷진흥원(KISA)',
+    category: '규정 확인',
+    question: 'KISA 임직원 행동강령의 주요 내용을 알려줘',
+    icon: ShieldCheck,
+  },
+  {
+    label: '승진심사 기준을 알려줘요',
+    institution: '한국해양과학기술원',
+    category: '규정 확인',
+    question: '승진심사 기준을 알려줘',
+    icon: Award,
   },
 ]
 export type SuggestedQuestion = (typeof suggestedQuestions)[number]
